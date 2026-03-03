@@ -1,5 +1,6 @@
 from Nave import Nave
-from Tablero import Tablero
+from Tablero import Tablero, Estado
+
 
 class Juego:
     def __init__(self):
@@ -11,7 +12,6 @@ class Juego:
         buque = Nave("Buque", 2)
         portaaviones = Nave("Portaaviones", 4)
 
-        # Colocación fija (para simplificar)
         self.tablero.colocar_nave(submarino, 0, 0, "H")
         self.tablero.colocar_nave(buque, 2, 2, "H")
         self.tablero.colocar_nave(portaaviones, 5, 3, "V")
@@ -20,16 +20,15 @@ class Juego:
         resultado, nave = self.tablero.comprobar_impacto(x, y)
         self.mostrar_resultado(resultado, nave)
 
-    def mostrar_resultado(self, resultado: str, nave):
+    def mostrar_resultado(self, resultado:str, nave):
         if resultado == "Agua":
-            print("Agua 🌊")
+            return Estado.agua
         elif resultado == "Tocado":
-            print("Tocado 💥")
+            return Estado.tocado
         elif resultado == "Hundido":
-            print(f"¡Hundido! Has destruido el {nave.nombre} 🚢")
+            return Estado.hundido
 
 
-# --- EJECUCIÓN PRINCIPAL ---
 if __name__ == "__main__":
     juego = Juego()
 
