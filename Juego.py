@@ -4,8 +4,10 @@ from Tablero import Tablero
 
 class Juego:
     def __init__(self):
+
+        self.obj_tablero = Tablero()
         self.lanzar_ataque(9, 1)
-        self.lanzar_ataque(4, 0)
+        self.lanzar_ataque(2, 1)
         self.lanzar_ataque(7, 6)
 
     def inicializar_naves(self):
@@ -22,8 +24,8 @@ class Juego:
     def lanzar_ataque(self, x, y):
 
         print(f"Atacando a  {x}, {y} ")
-        obj_tablero = Tablero()
-        resultado = obj_tablero.comprobar_impacto(x, y)
+
+        resultado = self.obj_tablero.comprobar_impacto(x, y)
         self.mostrar_resultado(resultado)
 
 

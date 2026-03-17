@@ -43,7 +43,7 @@ class Tablero:
     def comprobar_impacto(self, x, y):
 
         print(f"[LOG] estoy en tablero comprobando impacto ({x}, {y})")
-        print(f"[LOG] casillero[{x}][{y}]")
+        print(f"[LOG] casillero[{x}][{y}] = {self.casillero[x][y]}")
 
         if self.casillero[x][y] is None:
             print("[LOG] Agua")
