@@ -9,6 +9,8 @@ class Juego:
         self.lanzar_ataque(9, 1)
         self.lanzar_ataque(9, 1)
         self.lanzar_ataque(9, 1)
+        self.lanzar_ataque(9, 1)
+        self.lanzar_ataque(9, 1)
 
     def inicializar_naves(self):
         self.tablero = Tablero()
