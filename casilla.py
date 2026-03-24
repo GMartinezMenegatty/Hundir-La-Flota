@@ -1,17 +1,24 @@
 class Casilla:
     def __init__(self):
         self.nave = None
-        self.visitada = False
+        self.atacada = False
 
     def disparar(self):
-        if self.visitada:
-            print("Ya disparaste aquí")
+        if self.atacada:
+            print("[LOG] Ya disparaste aquí")
             return None
 
-        self.visitada = True
+        self.atacada = True
 
         if self.nave is None:
-            print("Agua")
+            print("[LOG] Agua")
             return 0
 
-        return self.nave.recibir_disparo()
+        resultado = self.nave.recibir_disparo()
+
+        if resultado == 2:
+            print(f"[LOG] {self.nave.nombre} Hundido")
+        else:
+            print(f"[LOG] {self.nave.nombre} Tocado ({self.nave.vida} vida restante)")
+
+        return resultado

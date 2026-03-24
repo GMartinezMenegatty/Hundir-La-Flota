@@ -1,11 +1,14 @@
 from Nave import Nave
-
+from casilla import Casilla
 class Tablero:
 
-    def __init__(self, tamano=10):
-        self.AGUA = 0
+    def __init__(self, tamano = 10):
+        self.tamano = tamano
+
+        self.AWA = 0
         self.TOCADO = 1
         self.HUNDIDO = 2
+
         por1 = Nave("Enterprise", "portaaviones", 5)
 
         fra1 = Nave("Bismarck", "fragata", 3)
@@ -17,46 +20,54 @@ class Tablero:
         sub3 = Nave("U-505", "submarino", 1)
         sub4 = Nave("U-534", "submarino", 1)
 
+
+
         self.casillero = [
-            [None, None, None, None, None, None, None, None, None, None],
-            [None, por1, por1, por1, por1, por1, None, None, None, None],
-            [None, None, None, None, None, None, None, None, None, None],
-            [None, None, None, fra1, None, None, None, None, None, None],
-            [None, None, None, fra1, None, None, sub1, None, None, None],
-            [None, None, None, fra1, None, None, None, None, None, None],
-            [None, None, None, None, None, None, None, None, None, None],
-            [None, fra2, fra2, fra2, None, None, sub3, None, None, None],
-            [None, None, None, None, None, None, None, None, None, None],
-            [None, fra3, fra3, fra3, None, sub4, None, None, None, sub2]
+            [Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla()],
+            [Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla()],
+            [Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla()],
+            [Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla()],
+            [Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla()],
+            [Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla()],
+            [Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla()],
+            [Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla()],
+            [Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla()],
+            [Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla(), Casilla()]
         ]
 
-    def colocar_nave(self, nave, x, y, orientacion):
-        if orientacion == "H":
-            for i in range(nave.vida):
-                self.casillero[x][y + i] = nave
+        # portaaviones
+        self.casillero[1][1].nave = por1
+        self.casillero[1][2].nave = por1
+        self.casillero[1][3].nave = por1
+        self.casillero[1][4].nave = por1
+        self.casillero[1][5].nave = por1
 
-        elif orientacion == "V":
-            for i in range(nave.vida):
-                self.casillero[x + i][y] = nave
+        # fragatas
+        self.casillero[3][3].nave = fra1
+        self.casillero[4][3].nave = fra1
+        self.casillero[5][3].nave = fra1
+
+        self.casillero[7][1].nave = fra2
+        self.casillero[7][2].nave = fra2
+        self.casillero[7][3].nave = fra2
+
+        self.casillero[9][1].nave = fra3
+        self.casillero[9][2].nave = fra3
+        self.casillero[9][3].nave = fra3
+
+        # submarinos
+        self.casillero[4][6].nave = sub1
+        self.casillero[9][9].nave = sub2
+        self.casillero[7][6].nave = sub3
+        self.casillero[9][5].nave = sub4
 
     def comprobar_impacto(self, x, y):
+        print(f"[LOG] comprobando impacto ({x}, {y})")
 
-        print(f"[LOG] estoy en tablero comprobando impacto ({x}, {y})")
-        print(f"[LOG] casillero[{x}][{y}] = {self.casillero[x][y]}")
+        casilla = self.casillero[x][y]
+        resultado = casilla.disparar()
 
-        if self.casillero[x][y] is None:
-            print("[LOG] Agua")
-            return self.AGUA
+        if resultado is None:
+            return self.AWA  # ya atacada
 
-        nave = self.casillero[x][y]
-
-        resultado = nave.recibir_disparo()
-
-        if resultado == 1:
-            print(f"[LOG] {nave.nombre} Tocado")
-            return self.TOCADO
-
-        elif resultado == 2:
-            print(f"[LOG] {nave.nombre} Hundido")
-            return self.HUNDIDO
-        return None
+        return resultado
