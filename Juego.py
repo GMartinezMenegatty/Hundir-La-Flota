@@ -7,8 +7,8 @@ class Juego:
 
         self.obj_tablero = Tablero()
         self.lanzar_ataque(9, 1)
-        self.lanzar_ataque(2, 1)
-        self.lanzar_ataque(7, 6)
+        self.lanzar_ataque(9, 1)
+        self.lanzar_ataque(9, 1)
 
     def inicializar_naves(self):
         self.tablero = Tablero()

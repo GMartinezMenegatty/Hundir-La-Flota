@@ -6,7 +6,8 @@ class Nave:
         self.vida = vida
 
     def recibir_disparo(self):
-        self.vida -= 1
+        if self.vida > 0:
+            self.vida -= 1
 
         if self.vida <= 0:
             return 2

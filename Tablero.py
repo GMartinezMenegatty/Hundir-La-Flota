@@ -1,6 +1,5 @@
 from Nave import Nave
 
-
 class Tablero:
 
     def __init__(self, tamano=10):
