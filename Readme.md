@@ -47,3 +47,21 @@ autonumber
     Juego-->>Usuario: mostrar_resultado(resultado)
     deactivate Juego
 ```
+
+## Juego Hundir La Flota
+
+### Consta de 4 clases:
+
+Juego: Almacena el juego principal.
+
+Tablero: Almacena el tablero y las naves que existen.
+
+Casilla: Almacena si la casilla ha sido disparada o si tiene alguna nave.
+
+Nave: Almacena el nombre, tipo y vida de la nave.
+
+### Ejemplo:
+
+En el siguiente ejemplo atacamos a diferentes coordenadas para demostrar el funcionamiento del juego.
+
+![Ataques](imagenes/ataques.png)
